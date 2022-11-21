@@ -6,6 +6,9 @@ services:
     restart: always
     ports:
       - '3000:3000'
+    volumes:
+      - /app/node_modules
+      - ./frontend:/app
   api:
     build: ./api
     restart: always
@@ -13,7 +16,11 @@ services:
       - '5555:5000'
     depends_on:
       - mysql
-    
+    volumes:
+      - /app/node_modules
+      - ./api:/app  
+
+   
   mysql:
     image: mysql
     restart: always

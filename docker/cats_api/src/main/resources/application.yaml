@@ -1,0 +1,14 @@
+spring:
+
+  datasource:
+    url: jdbc:postgresql://${DATASOURCE_HOST:localhost}:5444/cats-api
+    password: admin
+    username: admin
+  jpa:
+
+
+
+
+
+    show-sql: true
+
