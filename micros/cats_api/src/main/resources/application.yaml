@@ -5,10 +5,18 @@ spring:
     password: admin
     username: admin
   jpa:
-
-
-
-
-
     show-sql: true
+  boot:
+    admin:
+      client:
+        url: "http://localhost:8080/"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+server:
+  port: 8081
+
 

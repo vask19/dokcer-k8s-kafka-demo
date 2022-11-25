@@ -5,6 +5,7 @@ plugins {
 }
 
 group = 'com.example'
+archivesBaseName = 'app'
 sourceCompatibility = '17'
 
 configurations {
@@ -17,6 +18,14 @@ repositories {
     mavenCentral()
 }
 
+
+ext {
+    set('springBootAdminVersion', "3.0.0-M4")
+}
+
+
+
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -25,6 +34,7 @@ dependencies {
     runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'de.codecentric:spring-boot-admin-starter-client'
 
 
     //swagger
@@ -33,6 +43,15 @@ dependencies {
 
 
 }
+
+
+dependencyManagement {
+    imports {
+        mavenBom "de.codecentric:spring-boot-admin-dependencies:${springBootAdminVersion}"
+    }
+}
+
+
 
 tasks.named('test') {
     useJUnitPlatform()

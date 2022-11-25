@@ -6,6 +6,7 @@
     <file type="web" url="file://$PROJECT_DIR$/jokes" />
     <file type="web" url="file://$PROJECT_DIR$/spring-admin" />
   </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="18" project-jdk-type="JavaSDK" />
   <component name="ProjectType">
     <option name="id" value="jpab" />
   </component>
