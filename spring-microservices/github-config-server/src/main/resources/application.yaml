@@ -12,7 +12,7 @@ spring:
           uri: https://github.com/vask19/javabegin-config.git
           clone-on-start: true
           username: vask19
-          password:
+          password: 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
           basedir: /Users/vasylkorol/javabeginconfig
           default-label: main
 
