@@ -41,5 +41,6 @@ out/
 
 
 *.yaml
-src/main/resources/
+src/main/resources/*
+src/main/resources/application.yaml
 *.yml

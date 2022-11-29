@@ -32,5 +32,5 @@ build/
 .vscode/
 
 *.yaml
-src/main/resources/
+src/main/resources/application.yaml
 *.yml

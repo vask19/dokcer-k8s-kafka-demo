@@ -11,12 +11,49 @@ spring:
 
 
 
+#eureka:
+#  instance:
+#    instance-id: ${spring.application.name}:${random.value}
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka
+#
+#server:
+#  port: 0
+
+#logging:
+#  pattern:
+#    console: '%{1.} [%-5level] %{HH:mm:ss} - %msg%n'
 
 
 
 
 
-
-
+#spring:
+#  application:
+#    name: api-gateway
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: test
+#          uri: lb://eclient
+#          predicates:
+#            - Path=/main/test
+#            - Method=GET
+#        - id: name
+#          uri: lb://eclient2
+#          predicates:
+#            - Path=/new/name
+#            - Method=GET
+#      discovery:
+#        locator:
+#          enabled: true
+#          lower-case-service-id: true
+#
+#
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka
 
 
