@@ -42,5 +42,5 @@ out/
 
 *.yaml
 src/main/resources/*
-src/main/resources/application.yaml
+spring-microservices/github-config-server/src/main/resources/application.yaml
 *.yml
