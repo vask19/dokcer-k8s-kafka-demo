@@ -1,0 +1,14 @@
+version: '3.5'
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres:10.5
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      POSTGRES_DB: pg_database
+      PGDATA: /data/postgres
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - "5445:5445"

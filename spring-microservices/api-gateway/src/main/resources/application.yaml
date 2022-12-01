@@ -8,6 +8,23 @@ spring:
 
 
 
+management:
+  endpoint:
+    gateway:
+      enabled: true
+
+
+    beans:
+      enabled: true
+    mappings:
+      enabled: true
+  endpoints:
+
+    web:
+      exposure:
+        include: '*'
+
+
 
 
 
