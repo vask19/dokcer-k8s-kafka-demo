@@ -1,21 +1,21 @@
 version: '3'
 services:
 
-  db-cats-api:
+  planner_users:
     image: postgres:12
     container_name: postgres12_6
-    user: postgres
-    userns_mode: postgres
-
     restart: always
 
     ports:
-      - 5444:5432
+      - '5444:5432'
     environment:
-      POSTGRES_PASSWORD: admin
-      POSTGRES_USER: root
-      POSTGRES_DB: cats-api
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: planner_users
+      PGDATA: /data/postgres
+
     volumes:
+      - /Users/vasylkorol/backaps:/var/lib/postgresql/data
       - /Users/vasylkorol/backaps:/var/opt/postgresql/backup
 
   pgadmin:
