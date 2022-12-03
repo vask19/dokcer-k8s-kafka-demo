@@ -1,12 +1,12 @@
 package vask.spring.microservices.planner.todo.service;
 
+import jakarta.transaction.Transactional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import ru.javabegin.micro.planner.entity.Task;
-import ru.javabegin.micro.planner.todo.repo.TaskRepository;
+import vask.spring.microservices.planner.entity.Task;
+import vask.spring.microservices.planner.todo.repo.TaskRepository;
 
-import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 

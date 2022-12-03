@@ -1,10 +1,10 @@
 package vask.spring.microservices.planner.todo.service;
 
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-import ru.javabegin.micro.planner.entity.Stat;
-import ru.javabegin.micro.planner.todo.repo.StatRepository;
+import vask.spring.microservices.planner.entity.Stat;
+import vask.spring.microservices.planner.todo.repo.StatRepository;
 
-import javax.transaction.Transactional;
 
 // всегда нужно создавать отдельный класс Service для доступа к данным, даже если кажется,
 // что мало методов или это все можно реализовать сразу в контроллере

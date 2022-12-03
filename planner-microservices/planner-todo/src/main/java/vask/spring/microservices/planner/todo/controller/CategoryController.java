@@ -1,16 +1,13 @@
 package vask.spring.microservices.planner.todo.controller;
 
+import org.apache.catalina.User;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.javabegin.micro.planner.entity.Category;
-import ru.javabegin.micro.planner.entity.User;
-import ru.javabegin.micro.planner.todo.feign.UserFeignClient;
-import ru.javabegin.micro.planner.todo.search.CategorySearchValues;
-import ru.javabegin.micro.planner.todo.service.CategoryService;
-import ru.javabegin.micro.planner.utils.rest.resttemplate.UserRestBuilder;
-import ru.javabegin.micro.planner.utils.rest.webclient.UserWebClientBuilder;
+import vask.spring.microservices.planner.entity.Category;
+import vask.spring.microservices.planner.todo.search.CategorySearchValues;
+import vask.spring.microservices.planner.todo.service.CategoryService;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -33,21 +30,18 @@ public class CategoryController {
     private CategoryService categoryService;
 
     // микросервисы для работы с пользователями
-    private UserRestBuilder userRestBuilder;
+  //  private UserRestBuilder userRestBuilder;
 
     // микросервисы для работы с пользователями
-    private UserWebClientBuilder userWebClientBuilder;
+    //private UserWebClientBuilder userWebClientBuilder;
 
     // клиент для вызова мс
-    private UserFeignClient userFeignClient;
+    //private UserFeignClient userFeignClient;
 
     // используем автоматическое внедрение экземпляра класса через конструктор
     // не используем @Autowired ля переменной класса, т.к. "Field injection is not recommended "
-    public CategoryController(CategoryService categoryService, UserFeignClient userFeignClient, UserRestBuilder userRestBuilder, UserWebClientBuilder userWebClientBuilder) {
+    public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
-        this.userRestBuilder = userRestBuilder;
-        this.userWebClientBuilder = userWebClientBuilder;
-        this.userFeignClient = userFeignClient;
     }
 
     @PostMapping("/all")
@@ -86,15 +80,14 @@ public class CategoryController {
 
         // вызов мс через feign интерфейс
 
-        ResponseEntity<User> result =  userFeignClient.findUserById(category.getUserId());
-
-        if (result == null){ // если мс недоступен - вернется null
-            return new ResponseEntity("система пользователей недоступна, попробуйте позже", HttpStatus.NOT_FOUND);
-        }
-
-        if (result.getBody() != null){ // если пользователь не пустой
-            return ResponseEntity.ok(categoryService.add(category));
-        }
+//
+//        if (result == null){ // если мс недоступен - вернется null
+//            return new ResponseEntity("система пользователей недоступна, попробуйте позже", HttpStatus.NOT_FOUND);
+//        }
+//
+//        if (result.getBody() != null){ // если пользователь не пустой
+//            return ResponseEntity.ok(categoryService.add(category));
+//        }
 
         // если пользователя НЕ существует
         return new ResponseEntity("user id=" + category.getUserId() + " not found", HttpStatus.NOT_ACCEPTABLE);

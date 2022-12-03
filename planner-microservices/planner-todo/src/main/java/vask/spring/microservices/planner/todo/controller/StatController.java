@@ -4,8 +4,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import ru.javabegin.micro.planner.entity.Stat;
-import ru.javabegin.micro.planner.todo.service.StatService;
+import vask.spring.microservices.planner.entity.Stat;
+import vask.spring.microservices.planner.todo.service.StatService;
 
 
 /*

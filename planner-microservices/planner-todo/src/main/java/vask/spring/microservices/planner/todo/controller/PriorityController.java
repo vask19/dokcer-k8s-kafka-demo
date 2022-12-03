@@ -4,10 +4,9 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.javabegin.micro.planner.entity.Priority;
-import ru.javabegin.micro.planner.todo.search.PrioritySearchValues;
-import ru.javabegin.micro.planner.todo.service.PriorityService;
-import ru.javabegin.micro.planner.utils.rest.resttemplate.UserRestBuilder;
+import vask.spring.microservices.planner.entity.Priority;
+import vask.spring.microservices.planner.todo.search.PrioritySearchValues;
+import vask.spring.microservices.planner.todo.service.PriorityService;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -36,13 +35,12 @@ public class PriorityController {
     private PriorityService priorityService;
 
     // микросервисы для работы с пользователями
-    private UserRestBuilder userRestBuilder;
+    //private UserRestBuilder userRestBuilder;
 
     // используем автоматическое внедрение экземпляра класса через конструктор
     // не используем @Autowired ля переменной класса, т.к. "Field injection is not recommended "
-    public PriorityController(PriorityService priorityService, UserRestBuilder userRestBuilder) {
+    public PriorityController(PriorityService priorityService) {
         this.priorityService = priorityService;
-        this.userRestBuilder = userRestBuilder;
     }
 
 
@@ -72,9 +70,9 @@ public class PriorityController {
         }
 
         // если такой пользователь существует
-        if (userRestBuilder.userExists(priority.getUserId())) { // вызываем микросервис из другого модуля
-            return ResponseEntity.ok(priorityService.add(priority)); // возвращаем добавленный объект с заполненным ID
-        }
+//        if (userRestBuilder.userExists(priority.getUserId())) { // вызываем микросервис из другого модуля
+//            return ResponseEntity.ok(priorityService.add(priority)); // возвращаем добавленный объект с заполненным ID
+//        }
 
         // если пользователя НЕ существует
         return new ResponseEntity("user id=" + priority.getUserId() + " not found", HttpStatus.NOT_ACCEPTABLE);

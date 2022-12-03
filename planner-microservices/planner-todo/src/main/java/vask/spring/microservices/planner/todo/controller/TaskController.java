@@ -7,10 +7,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.javabegin.micro.planner.entity.Task;
-import ru.javabegin.micro.planner.todo.search.TaskSearchValues;
-import ru.javabegin.micro.planner.todo.service.TaskService;
-import ru.javabegin.micro.planner.utils.rest.resttemplate.UserRestBuilder;
+import vask.spring.microservices.planner.entity.Task;
+import vask.spring.microservices.planner.todo.search.TaskSearchValues;
+import vask.spring.microservices.planner.todo.service.TaskService;
 
 import java.text.ParseException;
 import java.util.Calendar;
@@ -41,13 +40,12 @@ public class TaskController {
     private final TaskService taskService; // сервис для доступа к данным (напрямую к репозиториям не обращаемся)
 
     // микросервисы для работы с пользователями
-    private UserRestBuilder userRestBuilder;
+//    private UserRestBuilder userRestBuilder;
 
     // используем автоматическое внедрение экземпляра класса через конструктор
     // не используем @Autowired ля переменной класса, т.к. "Field injection is not recommended "
-    public TaskController(TaskService taskService, UserRestBuilder userRestBuilder) {
+    public TaskController(TaskService taskService) {
         this.taskService = taskService;
-        this.userRestBuilder = userRestBuilder;
     }
 
 
@@ -73,9 +71,9 @@ public class TaskController {
         }
 
         // если такой пользователь существует
-        if (userRestBuilder.userExists(task.getUserId())) { // вызываем микросервис из другого модуля
-            return ResponseEntity.ok(taskService.add(task)); // возвращаем добавленный объект с заполненным ID
-        }
+//        if (userRestBuilder.userExists(task.getUserId())) { // вызываем микросервис из другого модуля
+//            return ResponseEntity.ok(taskService.add(task)); // возвращаем добавленный объект с заполненным ID
+//        }
 
         // если пользователя НЕ существует
         return new ResponseEntity("user id=" + task.getUserId() + " not found", HttpStatus.NOT_ACCEPTABLE);

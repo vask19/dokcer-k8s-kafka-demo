@@ -1,7 +1,11 @@
 package vask.spring.microservices.planner.todo.service;
 
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+import vask.spring.microservices.planner.entity.Category;
+import vask.spring.microservices.planner.todo.repo.CategoryRepository;
 
+import java.util.List;
 
 
 // всегда нужно создавать отдельный класс Service для доступа к данным, даже если кажется,

@@ -1,10 +1,9 @@
 package vask.spring.microservices.planner.todo.service;
 
 import org.springframework.stereotype.Service;
-import ru.javabegin.micro.planner.entity.Category;
-import ru.javabegin.micro.planner.entity.Priority;
-import ru.javabegin.micro.planner.entity.Task;
-import ru.javabegin.micro.planner.utils.rest.webclient.UserWebClientBuilder;
+import vask.spring.microservices.planner.entity.Category;
+import vask.spring.microservices.planner.entity.Priority;
+import vask.spring.microservices.planner.entity.Task;
 
 import java.util.Calendar;
 import java.util.Date;
