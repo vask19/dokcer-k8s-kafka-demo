@@ -1,0 +1,12 @@
+
+spring:
+  application:
+    name: 'planner-todo'
+  config:
+    import: configserver:http://localhost:8888
+  profiles:
+    active: micro, todo
+
+
+
+

@@ -1,0 +1,12 @@
+server:
+  port: 8761
+spring:
+  application:
+    name: planner-eureka-server
+  config:
+    import: configserver:http://localhost:8888
+
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false

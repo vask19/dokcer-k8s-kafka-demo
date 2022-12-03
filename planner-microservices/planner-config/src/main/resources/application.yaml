@@ -1,0 +1,18 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: github-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/vask19/javabegin-config.git
+          clone-on-start: true
+          username: vask19
+          password: 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
+          basedir: /Users/vasylkorol/javabeginconfig
+          default-label: main
+
+
+

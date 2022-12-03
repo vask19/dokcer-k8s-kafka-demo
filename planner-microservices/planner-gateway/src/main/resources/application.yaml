@@ -1,0 +1,10 @@
+server:
+  port: 8765
+
+spring:
+  application:
+    name: planner-gateway
+  config:
+    import: configserver:http://localhost:8888
+
+
