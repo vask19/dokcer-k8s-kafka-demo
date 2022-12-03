@@ -35,5 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
-planner-microservices/planner-config/src/main/resources/application.yaml
-.yaml
+/planner-microservices/planner-config/src/main/resources/application.yaml
+*.yml
+*.yaml
