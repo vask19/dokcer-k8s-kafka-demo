@@ -21,6 +21,7 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'com.fasterxml.jackson.core:jackson-annotations'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test:3.0.0'
 
     // lombok
     compileOnly 'org.projectlombok:lombok'

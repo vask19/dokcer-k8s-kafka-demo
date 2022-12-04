@@ -1,7 +1,7 @@
 version: '3'
 services:
 
-  planner_users:
+  planner-db:
     image: postgres:12
     container_name: postgres12_6
     restart: always
@@ -11,11 +11,11 @@ services:
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
-      POSTGRES_DB: planner_users
-      PGDATA: /data/postgres
+      POSTGRES_DB: planner-db
+      PGDATA: /var/lib/postgresql/data/pgdata
 
     volumes:
-      - /Users/vasylkorol/backaps:/var/lib/postgresql/data
+      - postgres_sql:/var/lib/postgresql/data
       - /Users/vasylkorol/backaps:/var/opt/postgresql/backup
 
   pgadmin:
@@ -29,3 +29,5 @@ services:
       PGADMIN_DEFAULT_PASSWORD: admin
 
 
+volumes:
+  postgres_sql:

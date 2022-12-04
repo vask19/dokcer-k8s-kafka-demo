@@ -27,7 +27,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-aop'
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
     implementation 'vask.spring.microservices.planner:planner-entity'
-
+    implementation 'au.com.dius.pact.provider:junit5spring:4.4.2'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     // драйвер БД
     runtimeOnly 'org.postgresql:postgresql'
 
