@@ -8,23 +8,34 @@ group = 'vask.spring.microservices.planner'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
-configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
-}
-
 repositories {
     mavenCentral()
+
+}
+
+ext {
+    //set('springCloudVersion', "2022.0.0-RC2")
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'com.fasterxml.jackson.core:jackson-annotations'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'vask.spring.microservices.planner:planner-entity'
+    implementation 'vask.spring.microservices.planner:planner-utils'
+
+
+    // драйвер БД
+    runtimeOnly 'org.postgresql:postgresql'
 
     // lombok
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
+
+
+
 }
+
+
+
+
 
