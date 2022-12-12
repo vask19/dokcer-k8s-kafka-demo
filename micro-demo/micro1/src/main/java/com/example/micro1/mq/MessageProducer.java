@@ -17,8 +17,10 @@ public class MessageProducer {
     }
 
     public void newUserAction(Long userId){
-        Message message =  MessageBuilder.withPayload(userId).build();
-        
+        Message<Long> message =  MessageBuilder.withPayload(userId).build();
+        micro2Binding.todoOutputChannel().send(message);
+
+
 
     }
 

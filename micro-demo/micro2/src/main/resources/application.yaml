@@ -1,2 +1,19 @@
 server:
   port: 9002
+
+
+spring:
+  cloud:
+    stream:
+      bindings:
+        todoInputChannel:
+          destination: micro1
+  rabbitmq:
+    host: localhost
+    port: 5672
+    stream:
+      username: guest
+      password: guest
+  profiles:
+    active: application
+

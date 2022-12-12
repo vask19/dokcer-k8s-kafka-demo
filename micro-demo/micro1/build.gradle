@@ -17,6 +17,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-stream-rabbit
     implementation 'org.springframework.cloud:spring-cloud-starter-stream-rabbit:3.2.6'
+    implementation 'org.springframework.cloud:spring-cloud-starter-config'
 
 }
 
