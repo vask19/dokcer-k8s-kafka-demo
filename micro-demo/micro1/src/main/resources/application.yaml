@@ -1,15 +1,6 @@
-
 spring:
-  profiles:
-    active: application
-  cloud:
-    stream:
-      bindings:
-        todoOutputChannel:
-          destination: micro1
-  rabbitmq:
-    host: localhost
-    port: 5672
-    stream:
-      username: guest
-      password: guest
+  kafka:
+    bootstrap-servers:
+      - localhost:9092
+    template:
+      default-topic: tacocloud.orders.topic
