@@ -1,9 +1,8 @@
-package com.example.microdemo.servise;
+package com.example.micro2.servise;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
@@ -16,6 +15,7 @@ import java.util.logging.Logger;
 @Service
 public class KafkaConsumerService {
     private volatile boolean keepConsuming = true;
+
 
 
     public Map<String, String> getDate(){

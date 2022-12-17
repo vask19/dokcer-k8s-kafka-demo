@@ -15,15 +15,13 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-stream-rabbit
-    implementation 'org.springframework.kafka:spring-kafka:3.0.0'
-
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
 
     // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-integration
-    implementation 'org.springframework.boot:spring-boot-starter-integration:2.7.6'
 
     // https://mvnrepository.com/artifact/org.springframework.integration/spring-integration-file
-    implementation 'org.springframework.integration:spring-integration-file:6.0.0'
+    implementation 'org.apache.kafka:kafka-clients:3.3.1'
 
 }
 

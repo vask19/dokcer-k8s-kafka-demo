@@ -21,7 +21,9 @@ public class MainController {
     public String setId(@PathVariable("id") Long id){
         TacoOrder tacoOrder = new TacoOrder();
         tacoOrder.setName("bob with id: " + id);
+
         kafkaOrderMessagingService.sendOrder(tacoOrder);
+        System.out.println("qwqwewqeqeweqewqeqweq");
         return "or";
     }
 

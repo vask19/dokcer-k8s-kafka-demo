@@ -1,7 +1,7 @@
-package com.example.microdemo.controller;
+package com.example.micro2.controller;
 
 
-import com.example.microdemo.servise.KafkaConsumerService;
+import com.example.micro2.servise.KafkaConsumerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/")
 public class MainController {
-    private  KafkaConsumerService kafkaConsumerService;
+    private KafkaConsumerService kafkaConsumerService;
 
     public MainController(KafkaConsumerService kafkaConsumerService) {
         this.kafkaConsumerService = kafkaConsumerService;
