@@ -1,22 +1,11 @@
-package com.example.micro1.mq;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.stereotype.Service;
 
 import java.util.Properties;
 
-@Service
-@Configuration
-public class KafkaOrderMessagingService {
-    private KafkaTemplate<String, TacoOrder> kafkaTemplate;
-
-    public void sendOrder(TacoOrder order) {
-
+public class test {
+    public static void main(String[] args) {
         Properties kaProperties =
                 new Properties();
         kaProperties.put("bootstrap.servers",
@@ -29,11 +18,18 @@ public class KafkaOrderMessagingService {
                      new KafkaProducer<>(kaProperties)) {
             ProducerRecord<String, String> producerRecord =
                     new ProducerRecord<>("kinaction_helloworld",
-                            null, order.toString());
+                            null, "hello world again!");
             producer.send(producerRecord);
+            System.out.println(111);
 
         }
-    }
+    }}
 
 
-}
+
+
+
+
+
+
+

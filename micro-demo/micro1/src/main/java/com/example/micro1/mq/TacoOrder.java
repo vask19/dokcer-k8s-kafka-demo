@@ -6,4 +6,11 @@ public class TacoOrder {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "TacoOrder{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }
