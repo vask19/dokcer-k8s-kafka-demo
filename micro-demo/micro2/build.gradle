@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.0.0'
     id 'io.spring.dependency-management' version '1.1.0'
+
 }
 
 group = 'com.example'
@@ -22,9 +23,18 @@ dependencies {
 
     // https://mvnrepository.com/artifact/org.springframework.integration/spring-integration-file
     implementation 'org.apache.kafka:kafka-clients:3.3.1'
+    // https://mvnrepository.com/artifact/org.apache.avro/avro
+
+
 
 }
+
+
+//apply plugin: "com.commercehub.gradle.plugin.avro"
 
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+
+
