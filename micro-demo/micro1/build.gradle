@@ -14,16 +14,20 @@ repositories {
     mavenCentral()
 }
 
+generateAvroJava {
+    source("${projectDir}/src/main/resources/kinaction_alert.avsc")//sourcepath avrofile
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
     // https://mvnrepository.com/artifact/org.apache.kafka/kafka
-//    implementation 'org.apache.kafka:kafka_2.13:3.3.1'
     // https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka
     implementation 'org.springframework.kafka:spring-kafka:3.0.0'
     implementation "org.apache.avro:avro:1.11.0"
+
+
 
 
 

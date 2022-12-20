@@ -4,6 +4,4 @@ pluginManagement {
         mavenCentral()
     }
 }
-
-
 rootProject.name = 'micro1'

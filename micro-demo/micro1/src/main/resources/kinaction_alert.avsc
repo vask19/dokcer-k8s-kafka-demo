@@ -1,0 +1,32 @@
+{
+  "type": "record",
+  "name": "Alert",
+  "fields": [
+    {
+      "name": "sensor_id",
+      "type": "long",
+      "doc": "The unique id that identifies the sensor"
+    },
+    {
+      "name": "time",
+      "type": "long",
+      "doc":
+      "Time alert generated as UTC milliseconds from epoch"
+    },
+    {
+      "name": "status",
+      "type": {
+        "type": "enum",
+        "name": "AlertStatus",
+        "symbols": [
+          "Critical",
+          "Major",
+          "Minor",
+          "Warning"
+        ]
+      },
+      "doc":
+        "Allowed values sensors use for current status"
+    }
+  ]
+}
