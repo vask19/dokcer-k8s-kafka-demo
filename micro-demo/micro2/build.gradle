@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.0.0'
     id 'io.spring.dependency-management' version '1.1.0'
+    id("com.github.davidmc24.gradle.plugin.avro") version "1.2.0"
 
 }
 
@@ -11,26 +12,29 @@ sourceCompatibility = '17'
 
 repositories {
     mavenCentral()
+    maven {
+        url "https://packages.confluent.io/maven"
+    }
+}
+
+generateAvroJava {
+    source("${projectDir}/src/main/resources/kinaction_alert.avsc")//sourcepath avrofile
 }
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter'
-    // https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-stream-rabbit
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-
-    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-integration
-
-    // https://mvnrepository.com/artifact/org.springframework.integration/spring-integration-file
-    implementation 'org.apache.kafka:kafka-clients:3.3.1'
-    // https://mvnrepository.com/artifact/org.apache.avro/avro
-
-
-
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // https://mvnrepository.com/artifact/org.apache.kafka/kafka
+    implementation 'org.springframework.kafka:spring-kafka:3.0.0'
+    implementation "org.apache.avro:avro:1.11.0"
+//     https://mvnrepository.com/artifact/io.confluent/kafka-avro-serializer
+    implementation 'io.confluent:kafka-avro-serializer:5.3.0'
+    compileOnly('org.projectlombok:lombok')
+    annotationProcessor('org.projectlombok:lombok')
+    testCompileOnly('org.projectlombok:lombok')
+    testAnnotationProcessor('org.projectlombok:lombok')
 }
-
-
-//apply plugin: "com.commercehub.gradle.plugin.avro"
 
 tasks.named('test') {
     useJUnitPlatform()

@@ -20,9 +20,6 @@ public class MainController {
     @GetMapping()
     public void showDate(){
         var result = kafkaConsumerService.getDate();
-        System.out.println("\n\n\n" +111);
-//        System.out.println(result);
-        System.out.println("\n\n\n");
 
     }
 }

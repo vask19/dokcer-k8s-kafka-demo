@@ -12,6 +12,9 @@ sourceCompatibility = '17'
 
 repositories {
     mavenCentral()
+    maven {
+        url "https://packages.confluent.io/maven"
+    }
 }
 
 generateAvroJava {
@@ -23,18 +26,21 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     // https://mvnrepository.com/artifact/org.apache.kafka/kafka
-    // https://mvnrepository.com/artifact/org.springframework.kafka/spring-kafka
     implementation 'org.springframework.kafka:spring-kafka:3.0.0'
     implementation "org.apache.avro:avro:1.11.0"
-
-
-
-
-
-
-
-
+//     https://mvnrepository.com/artifact/io.confluent/kafka-avro-serializer
+    implementation 'io.confluent:kafka-avro-serializer:5.3.0'
+    compileOnly('org.projectlombok:lombok')
+    annotationProcessor('org.projectlombok:lombok')
+    testCompileOnly('org.projectlombok:lombok')
+    // https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients
+    implementation 'org.apache.kafka:kafka-clients:3.3.1'
+    testAnnotationProcessor('org.projectlombok:lombok')
 }
+
+
+
+
 
 
 tasks.named('test') {
