@@ -26,8 +26,11 @@ public class KafkaOrderMessagingService {
 
     public void sendOrder(TacoOrder order) {
             Properties kaProperties = new Properties();
-            kaProperties.put("bootstrap.servers",
-                    "localhost:9092,localhost:9093,localhost:9094");
+        kaProperties.put( "bootstrap.servers",
+                "localhost:9092,localhost:9093,localhost:9094");
+        kaProperties.put("acks", "all");
+        kaProperties.put("retries", "3");
+        kaProperties.put("max.in.flight.requests.per.connection", "1");
             kaProperties.put("key.serializer",
                     "org.apache.kafka.common.serialization.LongSerializer");
             kaProperties.put("value.serializer",
