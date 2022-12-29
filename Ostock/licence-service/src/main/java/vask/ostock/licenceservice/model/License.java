@@ -1,4 +1,4 @@
-package vask.ostock.ostock.model;
+package vask.ostock.licenceservice.model;
 
 import lombok.*;
 import org.springframework.hateoas.RepresentationModel;

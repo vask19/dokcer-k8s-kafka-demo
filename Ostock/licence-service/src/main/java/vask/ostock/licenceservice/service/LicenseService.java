@@ -1,9 +1,9 @@
-package vask.ostock.ostock.service;
+package vask.ostock.licenceservice.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
-import vask.ostock.ostock.model.License;
+import vask.ostock.licenceservice.model.License;
 
 import java.util.Locale;
 import java.util.Random;

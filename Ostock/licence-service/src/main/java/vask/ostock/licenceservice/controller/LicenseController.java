@@ -1,10 +1,10 @@
-package vask.ostock.ostock.controller;
+package vask.ostock.licenceservice.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import vask.ostock.ostock.model.License;
-import vask.ostock.ostock.service.LicenseService;
+import vask.ostock.licenceservice.model.License;
+import vask.ostock.licenceservice.service.LicenseService;
 
 import java.util.Locale;
 
