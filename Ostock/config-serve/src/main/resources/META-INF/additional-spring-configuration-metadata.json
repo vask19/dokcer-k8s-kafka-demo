@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "spring.application.profiles.active",
+      "type": "java.lang.String",
+      "description": "Description for spring.application.profiles.active."
+  }
+] }
