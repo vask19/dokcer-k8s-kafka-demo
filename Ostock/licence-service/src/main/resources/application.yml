@@ -1,2 +1,16 @@
-server:
-  port: 9002
+spring:
+  application:
+    name: licence-service
+  profiles:
+    active: dev
+#  cloud:
+#    config:
+#      uri: http://localhost:8071
+management:
+  endpoint:
+    mappings:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"

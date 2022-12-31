@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  licensingservice:
+    image: licence.0.0.1
+    ports:
+      - "9003:9003"
+    environment:
+      SPRING_PROFILES_ACTIVE: "dev"
+      SPRING_CLOUD_CONFIG_URI: http://configserver:8071
