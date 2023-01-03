@@ -3,16 +3,22 @@ spring:
     name: config-server
   profiles:
     active:
-      - native
+      - native,git
   cloud:
     config:
       server:
-        native:
-          search-locations: classpath:/config
-          #git:
-          # uri: https://github.com/ihuaylupo/config.git
-          #searchPaths: licensingservice
+        git:
+          uri: https://github.com/vask19/ostock-config.git
+          clone-on-start: true
+          username: vask19
+          password: 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
+          basedir: /Users/vasylkorol/ostocconfig
+          default-label: master
         bootstrap: true
 
 server:
   port: 8071
+
+encrypt:
+  key: secretkey
+
