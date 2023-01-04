@@ -1,18 +1,17 @@
 package vask.ostock.licenceservice.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
 
 @Getter @Setter @ToString
 @Entity
-@Table(name="licenses")
-public class License {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class License extends RepresentationModel<License>
+{
+
     @Id
-    private int id;
     @Column(name = "license_id", nullable = false)
     private String licenseId;
     private String description;
@@ -24,6 +23,15 @@ public class License {
     private String licenseType;
     @Column(name="comment")
     private String comment;
+    @Transient
+    private String organizationName;
+    @Transient
+    private String contactName;
+    @Transient
+    private String contactPhone;
+    @Transient
+    private String contactEmail;
+
     public License withComment(String comment){
         this.setComment(comment);
         return this;

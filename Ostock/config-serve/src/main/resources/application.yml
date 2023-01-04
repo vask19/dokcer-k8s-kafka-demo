@@ -11,7 +11,7 @@ spring:
           uri: https://github.com/vask19/ostock-config.git
           clone-on-start: true
           username: vask19
-          password: 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
+          password: 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
           basedir: /Users/vasylkorol/ostocconfig
           default-label: master
         bootstrap: true
@@ -20,5 +20,5 @@ server:
   port: 8071
 
 encrypt:
-  key: secretkey
+  key: ${ENCRYPT_KEY:-secretkey}
 
