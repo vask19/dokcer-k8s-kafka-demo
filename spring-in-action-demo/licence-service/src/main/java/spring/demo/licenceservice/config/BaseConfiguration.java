@@ -1,6 +1,4 @@
-package com.vask.springinaction.licence.config;
-
-
+package spring.demo.licenceservice.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
@@ -11,7 +9,6 @@ import java.util.Locale;
 
 @Configuration
 public class BaseConfiguration {
-
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver localeResolver = new SessionLocaleResolver();

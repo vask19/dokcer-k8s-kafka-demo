@@ -16,5 +16,4 @@ public class AlertCallback implements Callback {
                     metadata.offset(), metadata.topic(), metadata.timestamp());
         }
     }
-}
     }

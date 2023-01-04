@@ -79,8 +79,12 @@ public class Alert extends org.apache.avro.specific.SpecificRecordBase implement
    * Default constructor.  Note that this does not initialize fields
    * to their default values from the schema.  If that is desired then
    * one should use <code>newBuilder()</code>.
+   * @param i
+   * @param s
+   * @param critical
+   * @param s1
    */
-  public Alert() {}
+  public Alert(int i, String s, String critical, String s1) {}
 
   /**
    * All-args constructor.

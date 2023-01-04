@@ -1,12 +1,12 @@
-package com.vask.springinaction.licence.service;
+package spring.demo.licenceservice.service;
 
-import java.util.Locale;
-import java.util.Random;
-
-import com.vask.springinaction.licence.model.License;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
+import spring.demo.licenceservice.model.License;
+
+import java.util.Locale;
+import java.util.Random;
 
 @Service
 @RequiredArgsConstructor

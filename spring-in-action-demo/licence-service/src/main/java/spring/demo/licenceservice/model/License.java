@@ -1,4 +1,4 @@
-package com.vask.springinaction.licence.model;
+package spring.demo.licenceservice.model;
 
 import lombok.*;
 import org.springframework.hateoas.RepresentationModel;

@@ -1,10 +1,10 @@
-package com.vask.springinaction.licence.controller;
+package spring.demo.licenceservice.controller;
 
-import com.vask.springinaction.licence.model.License;
-import com.vask.springinaction.licence.service.LicenseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import spring.demo.licenceservice.model.License;
+import spring.demo.licenceservice.service.LicenseService;
 
 import java.util.Locale;
 
