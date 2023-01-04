@@ -37,3 +37,4 @@ build/
 *.yml
 *.yaml
 *.properties
+/Users/vasylkorol/docker-k8s-kafka/Ostock/config-serve/src/main/resources/application.yml
