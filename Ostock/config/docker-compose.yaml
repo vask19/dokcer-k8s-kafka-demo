@@ -1,15 +1,41 @@
 version: '3'
 
 services:
+  config:
+    image: config
+    container_name: config
+    ports:
+      - "8071:8071"
+    networks:
+      backand:
+        aliases:
+          - "config"
+
+  eureka:
+    image: eureka
+    container_name: eureka
+    hostname: eureka
+    profiles:
+      - dev
+    ports:
+      - "8761:8761"
+    networks:
+      backand:
+        aliases:
+          - "eureka"
+    depends_on:
+      - config
+
+
 
 
   ostock-db:
     image: postgres:12
-    container_name: postgres12
+    container_name: ostock-db
     restart: always
 
     ports:
-      - '5432:5432'
+      - '5433:5432'
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
@@ -23,63 +49,9 @@ services:
       - /Users/vasylkorol/backaps:/var/opt/postgresql/backup
 
     networks:
-      backend:
+      backand:
         aliases:
-          - "database"
-
-
-
-  config-service:
-    image: config-service
-    ports:
-      - "8071:8071"
-    environment:
-      ENCRYPT_KEY: "secretkey"
-    networks:
-      backend:
-        aliases:
-          - "config-service"
-    healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-
-
-  eureka-service:
-    image: eureka-service
-    ports:
-      - "8070:8070"
-#    depends_on:
-#      ostock-db:
-#        condition: service_healthy
-    networks:
-      backend:
-        aliases:
-            - "eureka-service"
-
-
-  license-service:
-    image: licence-service
-    ports:
-      - "9003:9003"
-    environment:
-      SPRING_PROFILES_ACTIVE: "dev"
-      SPRING_CLOUD_CONFIG_URI: http://configserver:8071
-    depends_on:
-      - ostock-db
-      - config-service
-
-    networks:
-      - backend
-  organization-service:
-    image: organization-service
-    environment:
-      SPRING_PROFILES_ACTIVE: "dev"
-      SPRING_CLOUD_CONFIG_URI: http://configserver:8071
-    networks:
-       - backend
+          - "ostock-db"
 
 
 
@@ -92,10 +64,39 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: raj@nola.com
       PGADMIN_DEFAULT_PASSWORD: admin
+    networks:
+      - backand
+
+
+  organization:
+    container_name: organization
+
+    ports:
+      - "8085:8085"
+    profiles:
+      - dev
+    image: organization
+    networks:
+      - backand
+    depends_on:
+      - config
+      - eureka
+      - ostock-db
+
+  licence:
+    image: licence
+    container_name: licence
+    profiles:
+      - dev
+    networks:
+      - backand
+    depends_on:
+      - config
+      - eureka
+      - ostock-db
 
 volumes:
   postgres_sql:
-
 networks:
-  backend:
+  backand:
     driver: bridge
