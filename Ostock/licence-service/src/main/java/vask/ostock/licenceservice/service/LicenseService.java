@@ -1,9 +1,12 @@
 package vask.ostock.licenceservice.service;
 
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import vask.ostock.licenceservice.config.ServiceConfig;
+import vask.ostock.licenceservice.service.client.OrganizationDiscoveryClient;
 import vask.ostock.licenceservice.service.client.OrganizationFeignClient;
 import vask.ostock.licenceservice.service.client.OrganizationRestTemplateClient;
 import vask.ostock.licenceservice.model.License;
@@ -11,10 +14,13 @@ import vask.ostock.licenceservice.model.Organization;
 import vask.ostock.licenceservice.repository.LicenseRepository;
 
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
+import java.util.concurrent.TimeoutException;
 
 
 @Service
+@Slf4j
 public class LicenseService {
 
     @Autowired
@@ -32,8 +38,8 @@ public class LicenseService {
     @Autowired
     OrganizationRestTemplateClient organizationRestClient;
 
-//    @Autowired
-   // OrganizationDiscoveryClient organizationDiscoveryClient;
+    @Autowired
+    OrganizationDiscoveryClient organizationDiscoveryClient;
 
     public License getLicense(String licenseId, String organizationId, String clientType){
         License license = licenseRepository.findByOrganizationIdAndLicenseId(organizationId, licenseId);
@@ -66,7 +72,7 @@ public class LicenseService {
                 break;
             case "discovery":
                 System.out.println("I am using the discovery client");
-                //organization = organizationDiscoveryClient.getOrganization(organizationId);
+                organization = organizationDiscoveryClient.getOrganization(organizationId);
                 break;
             default:
                 organization = organizationRestClient.getOrganization(organizationId);
@@ -98,7 +104,20 @@ public class LicenseService {
 
     }
 
-    public List<License> getLicensesByOrganization(String organizationId) {
+    @CircuitBreaker(name = "licence-service")
+    public List<License> getLicensesByOrganization(String organizationId) throws TimeoutException {
+        sleep();
         return licenseRepository.findByOrganizationId(organizationId);
+    }
+
+
+
+    private void sleep() throws TimeoutException{
+        try {
+            Thread.sleep(5000);
+            throw new java.util.concurrent.TimeoutException();
+        } catch (InterruptedException e) {
+            log.error(e.getMessage());
+        }
     }
 }

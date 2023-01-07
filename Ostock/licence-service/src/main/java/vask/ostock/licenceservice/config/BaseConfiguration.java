@@ -25,11 +25,6 @@ public class BaseConfiguration {
 
 
     @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
-
-    @Bean
     public ResourceBundleMessageSource messageSource() {
         ResourceBundleMessageSource messageSource =
                 new ResourceBundleMessageSource();
