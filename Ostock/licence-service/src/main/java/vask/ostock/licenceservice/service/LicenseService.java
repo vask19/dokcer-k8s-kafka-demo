@@ -114,7 +114,7 @@ public class LicenseService {
 
     private void sleep() throws TimeoutException{
         try {
-            Thread.sleep(5000);
+            Thread.sleep(6000);
             throw new java.util.concurrent.TimeoutException();
         } catch (InterruptedException e) {
             log.error(e.getMessage());
