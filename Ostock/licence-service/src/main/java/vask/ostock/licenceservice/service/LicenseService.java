@@ -1,6 +1,9 @@
 package vask.ostock.licenceservice.service;
 
+import io.github.resilience4j.bulkhead.annotation.Bulkhead;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import io.github.resilience4j.retry.annotation.Retry;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -13,6 +16,7 @@ import vask.ostock.licenceservice.model.License;
 import vask.ostock.licenceservice.model.Organization;
 import vask.ostock.licenceservice.repository.LicenseRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
@@ -104,17 +108,40 @@ public class LicenseService {
 
     }
 
-    @CircuitBreaker(name = "licence-service")
+    @CircuitBreaker(name = "licenseService",fallbackMethod= "buildFallbackLicenseList")
+    @Bulkhead(name= "bulkheadLicenseService",type = Bulkhead.Type.SEMAPHORE,
+            fallbackMethod= "buildFallbackLicenseList")
+    @Retry(name = "retryLicenseService",
+            fallbackMethod="buildFallbackLicenseList")
+    @RateLimiter(name = "licenseService",
+            fallbackMethod = "buildFallbackLicenseList")
     public List<License> getLicensesByOrganization(String organizationId) throws TimeoutException {
-        sleep();
+        randomlyRunLong();
         return licenseRepository.findByOrganizationId(organizationId);
+    }
+
+    private List<License> buildFallbackLicenseList(String organizationId,Throwable t){
+        List<License> fallbackList = new ArrayList<>();
+        License license = new License();
+        license.setLicenseId("0000000-00-00000");
+        license.setOrganizationId(organizationId);
+        license.setProductName(
+                "Sorry no licensing information currently available");
+        fallbackList.add(license);
+        return fallbackList;
     }
 
 
 
+    private void randomlyRunLong() throws TimeoutException{
+        Random rand = new Random();
+        int randomNum = rand.nextInt((3 - 1) + 1) + 1;
+        if (randomNum==3) sleep();
+    }
     private void sleep() throws TimeoutException{
         try {
-            Thread.sleep(6000);
+            System.out.println("Sleep");
+            Thread.sleep(5000);
             throw new java.util.concurrent.TimeoutException();
         } catch (InterruptedException e) {
             log.error(e.getMessage());
