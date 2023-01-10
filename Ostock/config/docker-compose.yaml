@@ -86,6 +86,8 @@ services:
   licence:
     image: licence
     container_name: licence
+    ports:
+      - "8006:8006"
     profiles:
       - dev
     networks:
@@ -94,6 +96,32 @@ services:
       - config
       - eureka
       - ostock-db
+  gateway:
+    image: gateway
+    container_name: gateway
+    ports:
+      - "8072:8072"
+    profiles:
+      - dev
+    networks:
+      - backand
+    depends_on:
+      - config
+      - eureka
+
+  keycloak:
+    image: sleighzy/keycloak
+    restart: always
+    platform: linux/amd64
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+    ports:
+      - "8080:8080"
+    networks:
+      backand:
+         aliases:
+            - "keycloak"
 
 volumes:
   postgres_sql:
