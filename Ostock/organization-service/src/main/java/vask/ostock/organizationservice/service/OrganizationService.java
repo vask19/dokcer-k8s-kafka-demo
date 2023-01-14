@@ -1,13 +1,12 @@
 package vask.ostock.organizationservice.service;
 
-import java.util.Optional;
-import java.util.UUID;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import vask.ostock.organizationservice.model.Organization;
 import vask.ostock.organizationservice.repository.OrganizationRepository;
+
+import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class OrganizationService {
