@@ -15,6 +15,11 @@ public class OrganizationController {
     private OrganizationService service;
 
 
+    @GetMapping("/test/123/")
+    public ResponseEntity<String >getRt(){
+        return ResponseEntity.ok("OK");
+    }
+
     @RequestMapping(value="/{organizationId}",method = RequestMethod.GET)
     public ResponseEntity<Organization> getOrganization(@PathVariable("organizationId") String organizationId) {
         return ResponseEntity.ok(service.findById(organizationId));
