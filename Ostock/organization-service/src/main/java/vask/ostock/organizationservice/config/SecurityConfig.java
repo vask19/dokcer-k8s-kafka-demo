@@ -29,7 +29,9 @@ public class SecurityConfig extends
     protected void configure(HttpSecurity http)
             throws Exception {
         super.configure(http);
-        http.authorizeRequests().anyRequest().permitAll();
+        http.authorizeRequests()
+                .antMatchers("/v1/organization").authenticated()
+                .anyRequest().permitAll();
         http.csrf().disable();
     }
     @Autowired

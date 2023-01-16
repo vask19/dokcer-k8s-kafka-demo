@@ -70,7 +70,8 @@ services:
 
   organization:
     container_name: organization
-
+    links:
+      - keycloak
     ports:
       - "8085:8085"
     profiles:
@@ -83,9 +84,9 @@ services:
       - eureka
       - ostock-db
 
-  licence:
-    image: licence
-    container_name: licence
+  license:
+    image: license
+    container_name: license
     ports:
       - "8006:8006"
     profiles:
@@ -108,14 +109,22 @@ services:
     depends_on:
       - config
       - eureka
-
+#  sleighzy/keycloak:18
   keycloak:
     image: sleighzy/keycloak
+    container_name: keycloak
+    hostname: keycloak
     restart: always
-    platform: linux/amd64
+
+#    platform: linux/amd64
     environment:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: admin
+#      JAVA_OPTS: "-Djboss.socket.binding.port-offset=10 -Xms64m -Xmx512m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m
+#      -Djava.net.preferIPv4Stack=true -Djboss.modules.system.pkgs=org.jboss.byteman -Djava.awt.headless=true"
+
+    volumes:
+      - keycloak:/opt/jboss/keycloak
     ports:
       - "8080:8080"
     networks:
@@ -125,6 +134,7 @@ services:
 
 volumes:
   postgres_sql:
+  keycloak:
 networks:
   backand:
     driver: bridge
